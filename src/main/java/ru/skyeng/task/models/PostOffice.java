@@ -17,6 +17,6 @@ public class PostOffice {
     @Column
     private String name;
     @Column
-    private String address;
+    private String addresseeName;
 
 }

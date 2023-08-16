@@ -14,12 +14,12 @@ public class PostalItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(EnumType.STRING)
-    TypeOfPostalItem type;
+    private TypeOfPostalItem type;
     @Column
-    Long addresseeIndex;
+    private Long addresseeIndex;
     @Column
-    String addresseeAddress;
+    private String addresseeAddress;
     @Column
-    String name;
+    private String addresseeName;
 
 }
