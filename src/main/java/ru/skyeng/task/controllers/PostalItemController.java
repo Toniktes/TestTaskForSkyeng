@@ -25,4 +25,9 @@ public class PostalItemController {
         postalItemService.arriveToPostOffice(itemId, officeId);
     }
 
+    @PatchMapping("/{itemId}/leave/{officeId}")
+    public void leaveThePostOffice(@PathVariable Long itemId, @PathVariable Long officeId) {
+        postalItemService.leaveThePostOffice(itemId, officeId);
+    }
+
 }

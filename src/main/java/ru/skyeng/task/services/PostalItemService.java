@@ -6,4 +6,6 @@ public interface PostalItemService {
     PostalItemDto createItem(PostalItemDto postalItemDto);
 
     void arriveToPostOffice(Long itemId, Long officeId);
+
+    void leaveThePostOffice(Long itemId, Long officeId);
 }

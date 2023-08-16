@@ -1,6 +1,7 @@
 package ru.skyeng.task.models;
 
 import lombok.*;
+import ru.skyeng.task.enums.Status;
 
 import javax.persistence.*;
 
@@ -18,4 +19,6 @@ public class History {
     private Long postalItemId;
     @Column(name = "post_office_id")
     private Long postOfficeId;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 }
