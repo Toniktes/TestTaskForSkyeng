@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
+@Table(name = "post_office")
 public class PostOffice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

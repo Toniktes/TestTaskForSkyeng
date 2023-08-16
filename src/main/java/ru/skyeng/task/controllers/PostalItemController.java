@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.skyeng.task.dto.PostalItemDto;
-import ru.skyeng.task.models.PostalItem;
 import ru.skyeng.task.services.PostalItemService;
 
 import javax.validation.Valid;
@@ -19,6 +18,11 @@ public class PostalItemController {
     @ResponseStatus(HttpStatus.CREATED)
     public PostalItemDto createItem(@Valid @RequestBody PostalItemDto postalItemDto) {
         return postalItemService.createItem(postalItemDto);
+    }
+
+    @PatchMapping("/arrive/{officeId}")
+    public void arriveToPostOffice(@PathVariable Long officeId) {
+        postalItemService.arriveToPostOffice();
     }
 
 }
