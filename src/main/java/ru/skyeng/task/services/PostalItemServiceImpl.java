@@ -6,7 +6,9 @@ import ru.skyeng.task.dto.PostalItemDto;
 import ru.skyeng.task.enums.Status;
 import ru.skyeng.task.exception.NotFoundException;
 import ru.skyeng.task.mappers.PostalItemMapper;
+import ru.skyeng.task.models.History;
 import ru.skyeng.task.models.PostalItem;
+import ru.skyeng.task.repositories.HistoryRepository;
 import ru.skyeng.task.repositories.PostOfficeRepository;
 import ru.skyeng.task.repositories.PostalItemRepository;
 
@@ -15,6 +17,7 @@ import ru.skyeng.task.repositories.PostalItemRepository;
 public class PostalItemServiceImpl implements PostalItemService {
     private final PostalItemRepository postalItemRepository;
     private final PostOfficeRepository postOfficeRepository;
+    private final HistoryRepository historyRepository;
     private final PostalItemMapper mapper;
 
     @Override
@@ -36,6 +39,6 @@ public class PostalItemServiceImpl implements PostalItemService {
         postalItem.setStatus(Status.AT_POST_OFFICE);
         postalItemRepository.save(postalItem);
 
-
+        historyRepository.save(new History(0L, itemId, officeId));
     }
 }
