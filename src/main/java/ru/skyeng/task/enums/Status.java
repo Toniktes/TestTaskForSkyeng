@@ -1,5 +1,6 @@
 package ru.skyeng.task.enums;
 
 public enum Status {
-    SENT
+    SENT,
+    AT_POST_OFFICE
 }

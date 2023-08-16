@@ -4,4 +4,6 @@ import ru.skyeng.task.dto.PostalItemDto;
 
 public interface PostalItemService {
     PostalItemDto createItem(PostalItemDto postalItemDto);
+
+    void arriveToPostOffice(Long itemId, Long officeId);
 }

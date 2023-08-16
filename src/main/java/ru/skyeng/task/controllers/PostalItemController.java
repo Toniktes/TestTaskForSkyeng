@@ -20,9 +20,9 @@ public class PostalItemController {
         return postalItemService.createItem(postalItemDto);
     }
 
-    @PatchMapping("/arrive/{officeId}")
-    public void arriveToPostOffice(@PathVariable Long officeId) {
-        postalItemService.arriveToPostOffice();
+    @PatchMapping("/{itemId}/arrive/{officeId}")
+    public void arriveToPostOffice(@PathVariable Long itemId, @PathVariable Long officeId) {
+        postalItemService.arriveToPostOffice(itemId, officeId);
     }
 
 }
