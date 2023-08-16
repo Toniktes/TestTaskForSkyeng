@@ -15,7 +15,7 @@ public class History {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "postal_item_id")
+    @Column(name = "postal_item_id", nullable = false)
     private Long postalItemId;
     @Column(name = "post_office_id")
     private Long postOfficeId;
