@@ -23,18 +23,18 @@ public class PostalItemController {
     }
 
     @PatchMapping("/{itemId}/arrive/{officeId}")
-    public void arriveToPostOffice(@PathVariable Long itemId, @PathVariable Long officeId) {
-        postalItemService.arriveToPostOffice(itemId, officeId);
+    public Boolean arriveToPostOffice(@PathVariable Long itemId, @PathVariable Long officeId) {
+        return postalItemService.arriveToPostOffice(itemId, officeId);
     }
 
     @PatchMapping("/{itemId}/leave/{officeId}")
-    public void leaveThePostOffice(@PathVariable Long itemId, @PathVariable Long officeId) {
-        postalItemService.leaveThePostOffice(itemId, officeId);
+    public Boolean leaveThePostOffice(@PathVariable Long itemId, @PathVariable Long officeId) {
+        return postalItemService.leaveThePostOffice(itemId, officeId);
     }
 
     @PatchMapping("/{itemId}")
-    public void getTheAddressee(@PathVariable Long itemId) {
-        postalItemService.getTheAddressee(itemId);
+    public Boolean getTheAddressee(@PathVariable Long itemId) {
+        return postalItemService.getTheAddressee(itemId);
     }
 
     @GetMapping("/{itemId}")

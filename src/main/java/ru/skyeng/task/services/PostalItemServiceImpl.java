@@ -34,7 +34,7 @@ public class PostalItemServiceImpl implements PostalItemService {
     }
 
     @Override
-    public void arriveToPostOffice(Long itemId, Long officeId) {
+    public Boolean arriveToPostOffice(Long itemId, Long officeId) {
         validation(itemId, officeId);
         PostalItem postalItem = postalItemRepository.getById(itemId);
         if (postalItem.getStatus() == Status.RECEIVED_BY_THE_ADDRESSEE || postalItem.getStatus() == Status.ARRIVED_AT_THE_POST_OFFICE) {
@@ -44,10 +44,11 @@ public class PostalItemServiceImpl implements PostalItemService {
         postalItemRepository.save(postalItem);
 
         historyRepository.save(new History(null, itemId, officeId, Status.ARRIVED_AT_THE_POST_OFFICE));
+        return true;
     }
 
     @Override
-    public void leaveThePostOffice(Long itemId, Long officeId) {
+    public Boolean leaveThePostOffice(Long itemId, Long officeId) {
         validation(itemId, officeId);
         PostalItem postalItem = postalItemRepository.getById(itemId);
         if (postalItem.getStatus() != Status.ARRIVED_AT_THE_POST_OFFICE) {
@@ -58,6 +59,8 @@ public class PostalItemServiceImpl implements PostalItemService {
         postalItemRepository.save(postalItem);
 
         historyRepository.save(new History(null, itemId, officeId, Status.LEFT_THE_POST_OFFICE));
+
+        return true;
     }
 
     private void validation(Long itemId, Long officeId) {
@@ -76,7 +79,7 @@ public class PostalItemServiceImpl implements PostalItemService {
     }
 
     @Override
-    public PostalItemDto getTheAddressee(Long itemId) {
+    public Boolean getTheAddressee(Long itemId) {
         validation(itemId);
         PostalItem postalItem = postalItemRepository.getById(itemId);
         postalItem.setStatus(Status.RECEIVED_BY_THE_ADDRESSEE);
@@ -84,7 +87,9 @@ public class PostalItemServiceImpl implements PostalItemService {
 
         historyRepository.save(new History(null, itemId, null, Status.RECEIVED_BY_THE_ADDRESSEE));
 
-        return postalItemMapper.toPostalItemDto(postalItemRepository.save(postalItem));
+        postalItemRepository.save(postalItem);
+
+        return true;
     }
 
     @Override
