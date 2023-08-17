@@ -14,7 +14,7 @@ public class PostOffice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private Long index;
+    private Long indexOffice;
     @Column
     private String name;
     @Column

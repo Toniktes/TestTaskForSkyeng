@@ -2,7 +2,6 @@ package ru.skyeng.task.services;
 
 import ru.skyeng.task.dto.HistoryDto;
 import ru.skyeng.task.dto.PostalItemDto;
-import ru.skyeng.task.models.History;
 
 import java.util.List;
 

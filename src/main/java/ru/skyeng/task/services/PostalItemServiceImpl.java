@@ -16,7 +16,6 @@ import ru.skyeng.task.repositories.PostOfficeRepository;
 import ru.skyeng.task.repositories.PostalItemRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -38,6 +37,9 @@ public class PostalItemServiceImpl implements PostalItemService {
     public void arriveToPostOffice(Long itemId, Long officeId) {
         validation(itemId, officeId);
         PostalItem postalItem = postalItemRepository.getById(itemId);
+        if (postalItem.getStatus() == Status.RECEIVED_BY_THE_ADDRESSEE || postalItem.getStatus() == Status.ARRIVED_AT_THE_POST_OFFICE) {
+            throw new ValidationException("статус отправления должен быть SENT или LEFT_THE_POST_OFFICE");
+        }
         postalItem.setStatus(Status.ARRIVED_AT_THE_POST_OFFICE);
         postalItemRepository.save(postalItem);
 
@@ -88,10 +90,6 @@ public class PostalItemServiceImpl implements PostalItemService {
     @Override
     public List<HistoryDto> getHistory(Long itemId) {
         validation(itemId);
-        return historyRepository.findAllById(itemId)
-                .stream()
-                .sorted()
-                .map(historyMapper::toHistoryDto)
-                .collect(Collectors.toList());
+        return historyMapper.toHistoryDtoList(historyRepository.findAllByPostalItemId(itemId));
     }
 }

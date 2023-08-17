@@ -82,6 +82,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fommil</groupId>
+			<artifactId>jsonformat_2.11</artifactId>
+			<version>1.0.0-RC9</version>
+		</dependency>
 	</dependencies>
 
 	<build>

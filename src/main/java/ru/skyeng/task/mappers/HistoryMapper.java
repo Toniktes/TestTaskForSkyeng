@@ -5,10 +5,10 @@ import org.springframework.stereotype.Component;
 import ru.skyeng.task.dto.HistoryDto;
 import ru.skyeng.task.models.History;
 
+import java.util.List;
+
 @Component
 @Mapper(componentModel = "spring")
 public interface HistoryMapper {
-    History toHistory(HistoryDto historyDto);
-
-    HistoryDto toHistoryDto(History history);
+    List<HistoryDto> toHistoryDtoList(List<History> histories);
 }

@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface HistoryRepository extends JpaRepository<History, Long> {
-    List<History> findAllById(Long id);
+    List<History> findAllByPostalItemId(Long id);
 }
