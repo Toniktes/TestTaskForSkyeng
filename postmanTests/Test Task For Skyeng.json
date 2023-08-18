@@ -1,0 +1,522 @@
+{
+	"info": {
+		"_postman_id": "66be4262-68d3-461f-a9f5-26a0f1ded15e",
+		"name": "Test Task For Skyeng",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25127842"
+	},
+	"item": [
+		{
+			"name": "Item 1 create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 201\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+							"});",
+							"pm.test(\"Has item create response\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"pm.test(\"Test item 'type' field\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('type');",
+							"    pm.expect(jsonData.type, '\"type\" must be MESSAGE').to.eql('MESSAGE');",
+							"});",
+							"pm.test(\"Test item 'addresseeIndex' field\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('addresseeIndex');",
+							"    pm.expect(jsonData.addresseeIndex, '\"addresseeIndex\" must be \"184041\"').to.eql(184041);",
+							"});",
+							"pm.test(\"Test item 'addresseeAddress' field\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('addresseeAddress');",
+							"    pm.expect(jsonData.addresseeAddress, '\"addresseeAddress\" must be \"addresseeAddress\"').to.eql('addresseeAddress');",
+							"});",
+							"pm.test(\"Test item 'addresseeName' field\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('addresseeName');",
+							"    pm.expect(jsonData.addresseeName, '\"addresseeName\" must be \"addresseeName\"').to.eql('addresseeName');",
+							"});",
+							"pm.test(\"Test item 'status' field\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('status');",
+							"    pm.expect(jsonData.status, '\"status\" must be \"SENT\"').to.eql('SENT');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"MESSAGE\",\n    \"addresseeIndex\": 184041,\n    \"addresseeAddress\": \"addresseeAddress\",\n    \"addresseeName\": \"addresseeName\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "item 1 arrive",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 201\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+							"});",
+							"pm.test(\"Has body response\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"pm.test(\"Has boolean\", function () {",
+							"pm.expect(pm.response.json()).to.be.an(\"boolean\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/item/1/arrive/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"1",
+						"arrive",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "item 1 get history",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 201\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+							"});",
+							"pm.test(\"Has user create response\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"pm.test(\"Test item 'postalItemId' field\", function () {",
+							"    var jsonData = pm.response.json()[0];",
+							"    pm.expect(jsonData).to.have.property('postalItemId');",
+							"    pm.expect(jsonData.postalItemId, '\"postalItemId\" must be 1').to.eql(1);",
+							"});",
+							"pm.test(\"Test item 'postOfficeId' field\", function () {",
+							"    var jsonData = pm.response.json()[0];",
+							"    pm.expect(jsonData).to.have.property('postOfficeId');",
+							"    pm.expect(jsonData.postOfficeId, '\"postOfficeId\" must be \"1\"').to.eql(1);",
+							"});",
+							"pm.test(\"Test user 'status' field\", function () {",
+							"    var jsonData = pm.response.json()[0];",
+							"    pm.expect(jsonData).to.have.property('status');",
+							"    pm.expect(jsonData.status, '\"status\" must be \"ARRIVED_AT_THE_POST_OFFICE\"').to.eql('ARRIVED_AT_THE_POST_OFFICE');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/item/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "item 1 leave",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 201\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+							"});",
+							"pm.test(\"Has body response\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"pm.test(\"Has boolean\", function () {",
+							"pm.expect(pm.response.json()).to.be.an(\"boolean\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/item/1/leave/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"1",
+						"leave",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "item 1 get history",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 201\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+							"});",
+							"pm.test(\"Has user create response\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"pm.test(\"Test item 'postalItemId' field\", function () {",
+							"    var jsonData = pm.response.json()[0];",
+							"    pm.expect(jsonData).to.have.property('postalItemId');",
+							"    pm.expect(jsonData.postalItemId, '\"postalItemId\" must be 1').to.eql(1);",
+							"});",
+							"pm.test(\"Test item 'postOfficeId' field\", function () {",
+							"    var jsonData = pm.response.json()[0];",
+							"    pm.expect(jsonData).to.have.property('postOfficeId');",
+							"    pm.expect(jsonData.postOfficeId, '\"postOfficeId\" must be \"1\"').to.eql(1);",
+							"});",
+							"pm.test(\"Test user 'status' field\", function () {",
+							"    var jsonData = pm.response.json()[0];",
+							"    pm.expect(jsonData).to.have.property('status');",
+							"    pm.expect(jsonData.status, '\"status\" must be \"ARRIVED_AT_THE_POST_OFFICE\"').to.eql('ARRIVED_AT_THE_POST_OFFICE');",
+							"});",
+							"",
+							"",
+							"pm.test(\"Test item 'postalItemId' field\", function () {",
+							"    var jsonData = pm.response.json()[1];",
+							"    pm.expect(jsonData).to.have.property('postalItemId');",
+							"    pm.expect(jsonData.postalItemId, '\"postalItemId\" must be 1').to.eql(1);",
+							"});",
+							"pm.test(\"Test item 'postOfficeId' field\", function () {",
+							"    var jsonData = pm.response.json()[1];",
+							"    pm.expect(jsonData).to.have.property('postOfficeId');",
+							"    pm.expect(jsonData.postOfficeId, '\"postOfficeId\" must be \"1\"').to.eql(1);",
+							"});",
+							"pm.test(\"Test user 'status' field\", function () {",
+							"    var jsonData = pm.response.json()[1];",
+							"    pm.expect(jsonData).to.have.property('status');",
+							"    pm.expect(jsonData.status, '\"status\" must be \"LEFT_THE_POST_OFFICE\"').to.eql('LEFT_THE_POST_OFFICE');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/item/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "item 1 recived",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 201\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+							"});",
+							"pm.test(\"Has body response\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"pm.test(\"Has boolean\", function () {",
+							"pm.expect(pm.response.json()).to.be.an(\"boolean\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/item/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "item 1 get history",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 201\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+							"});",
+							"pm.test(\"Has user create response\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"pm.test(\"Test item 'postalItemId' field\", function () {",
+							"    var jsonData = pm.response.json()[0];",
+							"    pm.expect(jsonData).to.have.property('postalItemId');",
+							"    pm.expect(jsonData.postalItemId, '\"postalItemId\" must be 1').to.eql(1);",
+							"});",
+							"pm.test(\"Test item 'postOfficeId' field\", function () {",
+							"    var jsonData = pm.response.json()[0];",
+							"    pm.expect(jsonData).to.have.property('postOfficeId');",
+							"    pm.expect(jsonData.postOfficeId, '\"postOfficeId\" must be \"1\"').to.eql(1);",
+							"});",
+							"pm.test(\"Test user 'status' field\", function () {",
+							"    var jsonData = pm.response.json()[0];",
+							"    pm.expect(jsonData).to.have.property('status');",
+							"    pm.expect(jsonData.status, '\"status\" must be \"ARRIVED_AT_THE_POST_OFFICE\"').to.eql('ARRIVED_AT_THE_POST_OFFICE');",
+							"});",
+							"",
+							"",
+							"pm.test(\"Test item 'postalItemId' field\", function () {",
+							"    var jsonData = pm.response.json()[1];",
+							"    pm.expect(jsonData).to.have.property('postalItemId');",
+							"    pm.expect(jsonData.postalItemId, '\"postalItemId\" must be 1').to.eql(1);",
+							"});",
+							"pm.test(\"Test item 'postOfficeId' field\", function () {",
+							"    var jsonData = pm.response.json()[1];",
+							"    pm.expect(jsonData).to.have.property('postOfficeId');",
+							"    pm.expect(jsonData.postOfficeId, '\"postOfficeId\" must be \"1\"').to.eql(1);",
+							"});",
+							"pm.test(\"Test user 'status' field\", function () {",
+							"    var jsonData = pm.response.json()[1];",
+							"    pm.expect(jsonData).to.have.property('status');",
+							"    pm.expect(jsonData.status, '\"status\" must be \"LEFT_THE_POST_OFFICE\"').to.eql('LEFT_THE_POST_OFFICE');",
+							"});",
+							"",
+							"",
+							"pm.test(\"Test item 'postalItemId' field\", function () {",
+							"    var jsonData = pm.response.json()[2];",
+							"    pm.expect(jsonData).to.have.property('postalItemId');",
+							"    pm.expect(jsonData.postalItemId, '\"postalItemId\" must be 1').to.eql(1);",
+							"});",
+							"pm.test(\"Test item 'postOfficeId' field\", function () {",
+							"    var jsonData = pm.response.json()[2];",
+							"    pm.expect(jsonData).to.have.property('postOfficeId');",
+							"    pm.expect(jsonData.postOfficeId, '\"postOfficeId\" must be \"null\"').to.eql(null);",
+							"});",
+							"pm.test(\"Test user 'status' field\", function () {",
+							"    var jsonData = pm.response.json()[2];",
+							"    pm.expect(jsonData).to.have.property('status');",
+							"    pm.expect(jsonData.status, '\"status\" must be \"RECEIVED_BY_THE_ADDRESSEE\"').to.eql('RECEIVED_BY_THE_ADDRESSEE');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/item/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
